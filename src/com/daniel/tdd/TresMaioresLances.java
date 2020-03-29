@@ -1,4 +1,4 @@
-package com.daniel.tdd.Test;
+package com.daniel.tdd;
 
 import com.daniel.tdd.Lance;
 import com.daniel.tdd.Leilao;

@@ -1,11 +1,16 @@
 package com.daniel.tdd.Test;
 
 import com.daniel.tdd.*;
-import static org.junit.Assert.assertEquals;
 
-import org.junit.AfterClass;
+
+import static com.daniel.tdd.Test.haUmLance.ahaUmLance;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -38,6 +43,18 @@ public class avaliadorTeste {
 
     }
 
+    @Test
+    public void temUmlance (){
+
+        Lance lance = new Lance(new Usuario("Steve Jobs"), 2000);
+
+        Leilao leilao = leilaoBuilder.setDescricaoLeilao("Teste")
+                .propoe(lance)
+                .constroi();
+
+        assertThat(leilao, ahaUmLance(lance));
+    }
+
     @Test(expected = RuntimeException.class)
     public void naoDeveAceitaLancesVazios (){
         Leilao leilao =  leilaoBuilder.
@@ -59,8 +76,12 @@ public class avaliadorTeste {
 
             devolverMaiorOuMenorLance maioirLance = new devolverMaiorOuMenorLance(playstation3);
 
-            assertEquals(500, maioirLance.getMaiorValor(), 0.00001 );
-            assertEquals(100, new devolverMaiorOuMenorLance(playstation3).getMenorValor(), 0.00001);
+
+/*           assertEquals(500, maioirLance.getMaiorValor(), 0.00001 );
+            assertEquals(100, new devolverMaiorOuMenorLance(playstation3).getMenorValor(), 0.00001);*/
+
+            assertThat(maioirLance.getMaiorValor(), equalTo(500.0));
+
         }
 
         @Test
@@ -92,8 +113,15 @@ public class avaliadorTeste {
 
             TresMaioresLances tresMaioresLances = new TresMaioresLances(playstation3);
 
-            assertEquals(100, tresMaioresLances.getTresMaioresLances().get(0).getValor(), 0000.1);
-            assertEquals(3, tresMaioresLances.getTresMaioresLances().size(), 0000.1);
+            /*assertEquals(100, tresMaioresLances.getTresMaioresLances().get(0).getValor(), 0000.1);
+            assertEquals(3, tresMaioresLances.getTresMaioresLances().size(), 0000.1);*/
+
+            assertThat(tresMaioresLances.getTresMaioresLances(), hasItems(
+                    new Lance(daniel, 500),
+                    new Lance(jorge, 250),
+                    new Lance(rodrigo, 100)
+            ));
+
         }
 
         @Test
@@ -126,6 +154,7 @@ public class avaliadorTeste {
 
         assertEquals(700.0, leiloeiro.getMaiorValor(), 0.0001);
         assertEquals(120.0, leiloeiro.getMenorValor(), 0.0001);
+
     }
 
     @Test

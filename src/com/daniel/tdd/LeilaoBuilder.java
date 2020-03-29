@@ -1,7 +1,4 @@
-package com.daniel.tdd.Test;
-
-import com.daniel.tdd.Lance;
-import com.daniel.tdd.Leilao;
+package com.daniel.tdd;
 
 public class LeilaoBuilder {
 
