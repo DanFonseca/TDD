@@ -47,7 +47,6 @@ public class avaliadorTeste {
     public void temUmlance (){
 
         Lance lance = new Lance(new Usuario("Steve Jobs"), 2000);
-
         Leilao leilao = leilaoBuilder.setDescricaoLeilao("Teste")
                 .propoe(lance)
                 .constroi();
